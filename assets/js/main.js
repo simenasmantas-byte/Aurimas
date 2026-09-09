@@ -112,7 +112,9 @@
       }).join('');
     }
 
-    /* --- Teisinė informacija --- */
+    /* --- Teisinė informacija ------------------------------------------------
+       Neužpildyti laukai (PLACEHOLDER arba tušti) VIEŠAI NERODOMI.
+       Įrašius tikrą reikšmę data.js faile, eilutė atsiranda automatiškai. */
     var lg = $('#legalGrid');
     if (lg) {
       var rows = [
@@ -120,13 +122,17 @@
         ['Kodas',                SITE.legal.code],
         ['Tarpininkavimo įmonė', SITE.legal.brokerage],
         ['Veiklos adresas',      SITE.legal.businessAddress]
-      ];
+      ].filter(function (r) {
+        return r[1] && !/PLACEHOLDER/i.test(r[1]);
+      });
+
       lg.innerHTML = rows.map(function (r) {
-        var ph = /PLACEHOLDER/i.test(r[1]);
         return '<div><p class="legal__k">' + esc(r[0]) + '</p>' +
-               '<p class="legal__v' + (ph ? ' is-placeholder' : '') + '">' +
-               esc(r[1]) + '</p></div>';
+               '<p class="legal__v">' + esc(r[1]) + '</p></div>';
       }).join('');
+
+      var lh = $('#legalHead');
+      if (lh) lh.hidden = rows.length === 0;
     }
 
     var ll = $('#legalLinks');
@@ -137,11 +143,12 @@
         ['Prieinamumo pareiškimas',   SITE.legal.accessibilityUrl],
         ['Tarpininkavimo informacija', SITE.legal.disclosureUrl]
       ];
-      ll.innerHTML = docs.map(function (d) {
-        return d[1]
-          ? '<a href="' + esc(d[1]) + '">' + esc(d[0]) + '</a>'
-          : '<span class="disabled" title="Dokumentas dar neparengtas">' + esc(d[0]) + '</span>';
-      }).join('');
+      /* Rodomos tik tos nuorodos, kurioms yra tikras adresas.
+         Neparengti dokumentai viešai nerodomi. */
+      ll.innerHTML = docs.filter(function (d) { return !!d[1]; })
+        .map(function (d) {
+          return '<a href="' + esc(d[1]) + '">' + esc(d[0]) + '</a>';
+        }).join('');
     }
   }
 

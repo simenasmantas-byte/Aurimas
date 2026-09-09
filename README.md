@@ -46,11 +46,15 @@ komentaruose `assets/js/data.js` faile):
 
 Beveik viskas keičiama **tik `assets/js/data.js`** faile.
 
-### 1. Teisinė informacija (BŪTINA prieš paleidimą)
+### 1. Teisinė informacija
 
-`SITE.legal` objekte keturi laukai turi reikšmę `PLACEHOLDER – …`.
-Puslapyje jie rodomi pilkai, su brūkšnine linija, o footeryje yra
-paaiškinimas, kad tai vietos rezervavimo įrašai.
+`SITE.legal` objekte keturi laukai. **Neužpildyti laukai (su žodžiu
+`PLACEHOLDER`) viešai NErodomi** – kartu paslepiama ir antraštė „Teisinė
+informacija“. Tas pats galioja dokumentų nuorodoms: kol `privacyUrl` ir kiti
+adresai tušti, nuorodos nerodomos.
+
+Įrašius tikrą reikšmę, eilutė footeryje atsiranda automatiškai – jokių kitų
+pakeitimų daryti nereikia.
 
 ```js
 legal: {

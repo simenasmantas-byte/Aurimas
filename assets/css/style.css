@@ -1420,3 +1420,9 @@ ul { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 620px) {
   .edu__item { grid-template-columns: 1fr; row-gap: 8px; }
 }
+
+/* --- 25. Tuščių teisinės informacijos blokų suskleidimas ------------------ */
+/* Kai teisinės informacijos laukai neužpildyti, jie nerodomi. Šios taisyklės
+   pašalina po jų likusius tarpus ir kabančias linijas. */
+.legal__grid:empty { margin-bottom: 0; }
+.legal__links:empty { display: none; }

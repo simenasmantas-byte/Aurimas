@@ -671,7 +671,9 @@
 
     <!-- ---------- Teisinė informacija ---------- -->
     <div class="legal">
-      <p class="footer__h">Teisinė informacija</p>
+      <!-- Rodoma tik tada, kai data.js yra bent vienas UŽPILDYTAS teisinės
+           informacijos laukas. Neužpildyti (PLACEHOLDER) laukai nerodomi. -->
+      <p class="footer__h" id="legalHead" hidden>Teisinė informacija</p>
       <div class="legal__grid" id="legalGrid"></div>
 
       <div class="legal__links" id="legalLinks"></div>
@@ -680,10 +682,7 @@
         Svetainėje pateikta informacija yra bendro pobūdžio ir nėra pasiūlymas
         sudaryti sandorį, teisinė, mokestinė ar investavimo konsultacija.
         Objektų duomenys, kainos ir prieinamumas gali keistis be atskiro
-        įspėjimo – tikslią informaciją teiraukitės tiesiogiai. Punktai,
-        pažymėti <span class="is-placeholder">brūkšnine linija</span>, yra
-        vietos rezervavimo įrašai ir turi būti pakeisti patvirtintais duomenimis
-        prieš viešą svetainės paleidimą.
+        įspėjimo – tikslią informaciją teiraukitės tiesiogiai.
       </p>
 
       <div class="legal__bar">
