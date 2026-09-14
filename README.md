@@ -146,11 +146,17 @@ grąžinami įrašius atgal kelias HTML eilutes (instrukcijos – komentaruose
 
 ## Talpinimas
 
-Nukopijuokite visą aplanką į statinį hostingą (GitHub Pages, Netlify,
-Cloudflare Pages, įprastą serverį).
+Svetainė talpinama GitHub Pages, domenas **www.aurimas.pro**.
 
-Gavus tikrą domeną, `index.html` faile atkomentuokite `canonical` eilutę ir
-papildykite `robots.txt` `Sitemap:` įrašu.
+| Failas | Paskirtis |
+|---|---|
+| `CNAME` | Nurodo GitHub Pages domeną. **Netrinti** – be jo domenas nustos veikti. |
+| `sitemap.xml` | Keturių puslapių žemėlapis paieškos sistemoms |
+| `robots.txt` | Leidžia indeksuoti, nurodo sitemap |
+| `.nojekyll` | Išjungia Jekyll apdorojimą GitHub Pages serveryje |
+
+Keičiant domeną reikia pakeisti: `CNAME`, `sitemap.xml`, `robots.txt` ir
+kiekvieno puslapio `canonical`, `og:url` bei `og:image` adresus.
 
 ---
 

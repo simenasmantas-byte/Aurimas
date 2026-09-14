@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Kai bus tikras domenas, ideti:
-# Sitemap: https://jusu-domenas.lt/sitemap.xml
+Sitemap: https://www.aurimas.pro/sitemap.xml
