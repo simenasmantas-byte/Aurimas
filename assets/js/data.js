@@ -69,6 +69,13 @@ const SITE = {
 /* =============================================================================
    OBJEKTAI
    -----------------------------------------------------------------------------
+   ŠIUO METU SVETAINĖJE NERODOMA.
+   Objektai nerodomi svetainėje – vietoj jų visur veda mygtukas „Objektai“
+   į Ober-Haus profilį (SITE.allListingsUrl), kur sąrašas atsinaujina pats.
+   Duomenys, filtrų sistema, kortelės ir modalinis langas palikti – jei
+   ateityje atsiras automatinis srautas, sąrašą galima grąžinti įdėjus į
+   puslapį <div class="grid-props" id="grid"></div> su filtrų forma.
+
    status    'parduodama' | 'nuomojama'
    category  'gyvenamasis' | 'komercinis' | 'sklypas'
    type      rodomas objekto tipas (laisvas tekstas)

@@ -71,14 +71,16 @@
       else { cLi.replaceWith(document.createTextNode('–')); }
     }
 
-    var all = $('#allListings');
-    if (all) all.href = SITE.allListingsUrl || SITE.profileUrl || '#';
+    /* Visos „Objektai“ nuorodos (meniu, hero, footeris) – iš vienos vietos.
+       HTML jos jau turi teisingą adresą, todėl veikia ir be JavaScript;
+       čia tik sinchronizuojama, jei adresas pakeičiamas data.js faile. */
+    var listingsUrl = SITE.allListingsUrl || SITE.profileUrl;
+    if (listingsUrl) {
+      $$('.js-listings').forEach(function (a) { a.href = listingsUrl; });
+    }
 
     var y = $('#year');
     if (y) y.textContent = new Date().getFullYear();
-
-    var snap = $('#snapshot');
-    if (snap) snap.textContent = 'Objektų duomenys atnaujinti ' + SITE.listingsSnapshot;
 
     /* --- Footer kontaktai --- */
     var fc = $('#footerContact');
@@ -182,27 +184,8 @@
       });
     }
 
-    /* Aktyvi sekcija meniu */
-    var links = $$('.nav__link');
-    var targets = links
-      .map(function (a) {
-        var id = a.getAttribute('href');
-        return id && id.charAt(0) === '#' ? document.querySelector(id) : null;
-      })
-      .filter(Boolean);
-
-    if ('IntersectionObserver' in window && targets.length) {
-      var seen = {};
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) { seen[en.target.id] = en.isIntersecting; });
-        var current = null;
-        targets.forEach(function (t) { if (seen[t.id]) current = current || t.id; });
-        links.forEach(function (a) {
-          a.classList.toggle('is-active', a.getAttribute('href') === '#' + current);
-        });
-      }, { rootMargin: '-45% 0px -50% 0px' });
-      targets.forEach(function (t) { io.observe(t); });
-    }
+    /* Aktyvus meniu punktas žymimas HTML atributu aria-current="page"
+       kiekviename puslapyje – jokios JS logikos tam nereikia. */
   }
 
   /* ==========================================================================

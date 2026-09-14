@@ -1,137 +1,112 @@
 # Aurimas Petrikas – NT
 
-Vieno puslapio (one-page) profesionali NT svetainė. Statinis HTML/CSS/JS –
-be karkasų, be kompiliavimo, be `npm`. Atsidaro dukart spustelėjus
-`index.html` arba įkeliama į bet kurį hostingą nukopijavus visą aplanką.
+Daugiapuslapinė profesionali NT svetainė. Statinis HTML/CSS/JS – be karkasų,
+be kompiliavimo, be `npm`. Veikia atidarius `index.html` iš projekto aplanko
+arba įkėlus visą aplanką į bet kurį hostingą.
+
+---
+
+## Puslapiai
+
+| Failas | Puslapis | Turinys |
+|---|---|---|
+| `index.html` | Pagrindinis | Hero, skaičių juosta, objektų mygtukas, „NT ne tik gyvenimui“ |
+| `apie-mane.html` | Apie mane | Citata, biografija, kompetencijos |
+| `kuo-galiu-padeti.html` | Kuo galiu padėti | Nuotraukos juosta, 5 privalumai, 5 sritys |
+| `susisiekti.html` | Susisiekti | Užklausos forma ir kontaktai |
+
+**Objektai** nėra atskiras puslapis – meniu punktas ir visi mygtukai veda į
+Ober-Haus profilį, kur sąrašas atsinaujina savaime.
 
 ---
 
 ## Struktūra
 
 ```
-index.html                            puslapio karkasas ir sekcijos
-assets/css/style.css                  dizaino sistema
-assets/js/data.js                     ← VISAS KEIČIAMAS TURINYS
-                                        (kontaktai, objektai, atsiliepimai, karjera)
-assets/js/main.js                     navigacija, filtrai, modalas, forma
-assets/img/                           portretas, favicon
-assets/img/objektai/                  objektų nuotraukos
+index.html
+apie-mane.html
+kuo-galiu-padeti.html
+susisiekti.html
+
+assets/css/style.css      dizaino sistema
+assets/js/data.js         ← VISAS KEIČIAMAS TURINYS (kontaktai, teisinė info)
+assets/js/main.js         navigacija, forma, pasirodymo efektai
+assets/img/               nuotraukos ir favicon
 robots.txt
-
-aurimas-petrikas-VIENAS-FAILAS.html   savarankiška versija siuntimui
-build-vienas-failas.ps1               ją generuojantis skriptas
 ```
-
-Sekcijų eiliškumas puslapyje: navigacija → hero → apie mane → kuo galiu būti
-naudingas → kaip galiu padėti → patirtis → citata → objektai + paieška →
-investuotojams → kontaktai → footer.
-
-### Išjungtos skiltys
-
-Šios skiltys pašalintos iš puslapio, bet **duomenys, CSS ir JS palikti** –
-grąžinamos įrašius atgal kelias HTML eilutes (tikslios instrukcijos –
-komentaruose `assets/js/data.js` faile):
-
-| Skiltis | Duomenys |
-|---|---|
-| Karjeros kelias | `PROFILE.career` |
-| Išsilavinimas | `PROFILE.education` |
-| Atsiliepimai | `TESTIMONIALS` |
-| Kaip dirbame (procesas) | – (buvo HTML) |
-| Pagrindinis CTA | – (buvo HTML) |
 
 ---
 
-## Ką keisti pirmiausia
+## Ką keisti
 
-Beveik viskas keičiama **tik `assets/js/data.js`** faile.
+### 1. Kontaktai ir nuorodos
 
-### 1. Teisinė informacija
+`assets/js/data.js`, objektas `SITE`. Telefonas, el. paštas, adresas,
+LinkedIn ir **Objektų mygtuko adresas** (`allListingsUrl`).
 
-`SITE.legal` objekte keturi laukai. **Neužpildyti laukai (su žodžiu
-`PLACEHOLDER`) viešai NErodomi** – kartu paslepiama ir antraštė „Teisinė
-informacija“. Tas pats galioja dokumentų nuorodoms: kol `privacyUrl` ir kiti
-adresai tušti, nuorodos nerodomos.
+Objektų adresas HTML failuose įrašytas tiesiogiai (kad veiktų ir be
+JavaScript), o `main.js` jį sinchronizuoja iš `data.js`. Pakanka pakeisti
+vienoje vietoje – `data.js`.
 
-Įrašius tikrą reikšmę, eilutė footeryje atsiranda automatiškai – jokių kitų
-pakeitimų daryti nereikia.
+`instagram` / `facebook` palikus tuščius, piktogramos footeryje nerodomos.
 
-```js
-legal: {
-  entity:          'MB „Pavyzdys“',
-  code:            '123456789',
-  brokerage:       'UAB Ober-Haus nekilnojamasis turtas',
-  businessAddress: 'S. Daukanto g. 3, 92123 Klaipėda',
-  privacyUrl:      '/privatumo-politika.html',
-  ...
-}
-```
+### 2. Teisinė informacija
 
-Kol `privacyUrl` ir kiti dokumentų adresai tušti, footeryje jie rodomi kaip
-neaktyvūs tekstai (be nuorodų). Įrašius adresą – automatiškai tampa nuorodomis.
+`SITE.legal`. **Neužpildyti laukai (su žodžiu `PLACEHOLDER`) viešai
+NErodomi** – kartu paslepiama ir antraštė. Tas pats su dokumentų nuorodomis:
+kol `privacyUrl` ir kiti adresai tušti, nuorodos nerodomos.
 
-> Svetainėje nėra nė vieno išgalvoto registro numerio, licencijos ar
-> sertifikato. Nepridėkite jų, kol neturite patvirtintų duomenų.
+Įrašius tikrą reikšmę, eilutė footeryje atsiranda automatiškai.
 
-### 2. Objektai
+> Svetainėje nėra nė vieno išgalvoto registro numerio ar licencijos.
+> Nepridėkite jų, kol neturite patvirtintų duomenų.
 
-`PROPERTIES` masyvas. Kiekvienas objektas turi tuos pačius laukus
-(`status`, `category`, `type`, `price`, `rooms`, `area`, `lot`, `images`, …).
-Filtrai ir rūšiavimas veikia automatiškai – miestų ir tipų sąrašai
-generuojami iš duomenų, todėl pridėjus naują miestą jis iškart atsiranda
-paieškoje.
+### 3. Navigacija ir footeris
 
-Norint prijungti CMS ar XML srautą, pakanka `PROPERTIES` pakeisti tokios
-pačios struktūros masyvu – HTML ir CSS liečiami nebūna.
+Kartojasi visuose keturiuose HTML failuose (taip svetainė veikia be jokio
+build'o ir be JavaScript). Keičiant meniu punktą, pakeiskite jį **visuose
+keturiuose failuose**.
 
-Nuotraukas dėkite į `assets/img/objektai/` ir nurodykite kelius
-`cover` bei `images` laukuose.
+Aktyvus meniu punktas žymimas atributu `aria-current="page"`.
 
-### 3. Atsiliepimai
+### 4. Nuotraukos
 
-`TESTIMONIALS` masyvas. Šiuo metu – vienas realus, viešai paskelbtas
-atsiliepimas (Dr. Willoweit, 2020-08-20). Rodomas lietuviškas vertimas,
-po juo – originalas anglų kalba.
+| Failas | Kur naudojama |
+|---|---|
+| `aurimas-petrikas.png` | Pagrindinio puslapio portretas |
+| `klaipeda-uostas-biurai.jpg` | „NT sprendimai ne tik gyvenimui“ |
+| `kuo-galiu-padeti-hero.jpg` | „Kuo galiu padėti“ viršaus juosta |
 
-> Į šį masyvą dėkite tik realiai gautus atsiliepimus. Išgalvotų vardų
-> ir tekstų nenaudoti.
+**Portretas** – spalvota iškirpta nuotrauka permatomu fonu, todėl savaime
+derinasi prie svetainės fono. Atspalvis reguliuojamas viena CSS eilute –
+`.hero__portrait { filter: … }`.
 
-### 4. Profesinis profilis (karjera, išsilavinimas)
+> ⚠ `kuo-galiu-padeti-hero.jpg` yra **laikina** – iškirpta iš dizaino maketo,
+> todėl ne itin ryški. Pakeiskite kokybišku originalu tuo pačiu pavadinimu.
 
-`PROFILE` objektas: `career` (karjeros kelias), `education` (išsilavinimas),
-`languages`, `topSkills`. Duomenys paimti iš LinkedIn profilio ir išversti
-į lietuvių kalbą. Sekcija „Patirtis“ juos atvaizduoja automatiškai –
-pridėjus naują įrašą į `career`, jis iškart atsiranda laiko juostoje.
+Keičiant nuotrauką svarbu, kad CSS turėtų `height: auto` – kitaip HTML
+`height` atributas nustelbia `aspect-ratio` ir nuotrauka išsitempia.
 
-Įrašas su `current: true` gauna akcento spalvos tašką prie datų
-(žymi šiuo metu einamas pareigas).
-
-### 5. Kontaktai ir nuorodos
-
-`SITE` objekto viršuje. Telefonas, el. paštas, adresas, LinkedIn ir mygtuko
-„Visi Aurimo objektai“ adresas. `instagram` / `facebook` palikti tuščius –
-tuomet piktogramos footeryje nerodomos.
-
-### 6. Logotipas
+### 5. Logotipas
 
 Logotipo failo nebuvo, todėl naudojamas **tipografinis žodinis ženklas**
-(`AURIMAS PETRIKAS │ NT`). Gavus tikrą logotipą, `index.html` faile
+(`AURIMAS PETRIKAS │ NT`). Gavus tikrą logotipą, visuose keturiuose failuose
 pakeiskite `.brand` elemento vidų:
 
 ```html
-<a class="brand" href="#top">
+<a class="brand" href="index.html">
   <img src="assets/img/logo.svg" alt="Aurimas Petrikas" height="24">
 </a>
 ```
 
-Ženklas kartojasi dviejose vietose – navigacijoje ir footeryje.
+Ženklas kartojasi navigacijoje ir footeryje.
 
 ---
 
 ## Kontaktų forma
 
 Pagal nutylėjimą `SITE.formMode = 'mailto'` – paspaudus „Siųsti užklausą“
-atsidaro vartotojo el. pašto programa su užpildytu laišku. Veikia be serverio.
+atsidaro vartotojo el. pašto programa. Veikia be serverio.
 
 Norint tikro siuntimo fone (Formspree, Web3Forms ar savas backend):
 
@@ -144,77 +119,45 @@ Forma siunčia JSON su laukais `vardas`, `elpastas`, `telefonas`, `tema`, `zinut
 
 ---
 
-## Nuotraukos
+## Išjungtas turinys
 
-* **Portretas** – `assets/img/aurimas-petrikas.png`, **spalvota** iškirpta
-  nuotrauka permatomu fonu. Fono keisti nereikia: pro permatomą sritį matosi
-  tamsi svetainės plokštuma, todėl portretas savaime derinasi prie dizaino.
-  Atspalvis reguliuojamas viena CSS eilute – `.hero__portrait { filter: … }`.
-* **Objektų nuotraukos** – iš aktyvių skelbimų. **Jose matomas Ober-Haus
-  vandenženklis.** Vandenženklis paliktas nepaliestas sąmoningai – jo
-  šalinimas būtų svetimo ženklo naikinimas. Turint originalus be
-  vandenženklio, tiesiog perrašykite failus tais pačiais pavadinimais.
+Šie blokai pašalinti iš puslapių, bet **duomenys, CSS ir JS palikti** –
+grąžinami įrašius atgal kelias HTML eilutes (instrukcijos – komentaruose
+`assets/js/data.js` faile):
 
----
-
-## Dvi svetainės versijos
-
-| Failas | Kam |
+| Blokas | Duomenys |
 |---|---|
-| `index.html` + `assets/` | Pagrindinė versija. Ją keliate į hostingą ir redaguojate. |
-| `aurimas-petrikas-VIENAS-FAILAS.html` | Viskas viename faile (4,2 MB). Siuntimui paštu, „WeTransfer“, USB. |
-
-> **SVARBU:** `index.html` veikia tik tada, kai šalia jo yra aplankas `assets/`.
-> Nukopijavus vien `index.html` į kitą vietą, svetainė atsidarys be dizaino
-> ir be nuotraukų. Norint nusiųsti vieną failą – naudokite
-> `aurimas-petrikas-VIENAS-FAILAS.html`.
-
-### Vieno failo versijos perkūrimas
-
-Pakeitus turinį (`data.js`, tekstus, nuotraukas), vieno failo versiją
-reikia sugeneruoti iš naujo:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File build-vienas-failas.ps1
-```
-
-Skriptas įdeda CSS, JS ir visas nuotraukas (base64) tiesiai į HTML.
+| Objektų sąrašas su filtrais | `PROPERTIES` |
+| Karjeros kelias | `PROFILE.career` |
+| Išsilavinimas | `PROFILE.education` |
+| Atsiliepimai | `TESTIMONIALS` |
 
 ---
 
-## Peržiūra ir talpinimas
+## Talpinimas
 
-Paprasčiausiai atidarykite `index.html` naršyklėje **iš projekto aplanko** –
-viskas veikia iš karto (keliai reliatyvūs, JS nenaudoja `fetch`).
+Nukopijuokite visą aplanką į statinį hostingą (GitHub Pages, Netlify,
+Cloudflare Pages, įprastą serverį).
 
-Talpinimui pakanka nukopijuoti aplanką į bet kurį statinį hostingą
-(Netlify, Cloudflare Pages, GitHub Pages, įprastas serveris).
-
-Prieš paleidimą `index.html` faile pakeiskite realiu domenu:
-
-* `<link rel="canonical" href="https://aurimaspetrikas.lt/">`
-* `robots.txt` eilutę `Sitemap:`
+Gavus tikrą domeną, `index.html` faile atkomentuokite `canonical` eilutę ir
+papildykite `robots.txt` `Sitemap:` įrašu.
 
 ---
 
 ## Pastabos dėl turinio
 
-* Visi svetainės faktai (karjera, išsilavinimas, specializacija, kalbos,
-  kontaktai) paimti iš viešo Aurimo Petriko LinkedIn ir Ober-Haus profilių
-  ir **nėra išgalvoti**.
-* Skaičiai pateikiami tik tie, kurie yra viešai nurodyti: „20+ metų NT,
-  bankininkystės ir finansų srityse“, „25+ specialistų komanda“,
-  „nuo 2018 m.“. Sandorių kiekiai, pardavimų apimtys ar klientų skaičiai
-  nenurodyti, nes tokių duomenų nebuvo pateikta – jų nepridėkite be
-  patvirtinimo.
-* Struktūriniai duomenys (`JSON-LD`) faile `index.html` aprašo tik
-  patikrintus faktus. Nedėkite ten licencijų ar reitingų.
+* Visi faktai (karjera, išsilavinimas, specializacija, kalbos, kontaktai)
+  paimti iš viešo LinkedIn ir Ober-Haus profilių – **nieko neišgalvota**.
+* Skaičiai tik viešai nurodyti: „20+ metų“, „25+ komanda“, „nuo 2018 m.“.
+  Sandorių kiekių ar pardavimų apimčių nėra – nepridėkite be patvirtinimo.
+* Struktūriniai duomenys (`JSON-LD`) aprašo tik patikrintus faktus.
 
 ---
 
 ## Prieinamumas ir našumas
 
-* Semantinė struktūra, viena `<h1>`, nuoseklūs antraščių lygiai.
+* Semantinė struktūra, viena `<h1>` kiekviename puslapyje, nuoseklūs
+  antraščių lygiai.
 * Visi laukai su `<label>`, visi paveikslėliai su `alt`.
 * Kontrastas atitinka WCAG AA įprastam tekstui.
 * `prefers-reduced-motion` išjungia animacijas.

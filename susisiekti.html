@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Susisiekti | Aurimas Petrikas – NT Klaipėdoje</title>
+<meta name="description" content="Susisiekite dėl nekilnojamojo turto pardavimo, pirkimo, investicijų ar komercinių patalpų Klaipėdoje, Palangoje ir Vakarų Lietuvoje. Telefonas +370 687 88870.">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="lt_LT">
+<meta property="og:title" content="Susisiekti | Aurimas Petrikas">
+<meta property="og:description" content="Turite klausimą dėl NT? Parašykite arba skambinkite – aptarsime jūsų situaciją.">
+<meta property="og:image" content="assets/img/aurimas-petrikas.png">
+
+<meta name="theme-color" content="#12161B">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#turinys">Pereiti prie turinio</a>
+
+<!-- ======================= NAVIGACIJA ======================= -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="index.html" aria-label="Aurimas Petrikas – pradžia">
+      <span class="brand__name">Aurimas Petrikas</span>
+      <span class="brand__mark">NT</span>
+    </a>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Atidaryti meniu"
+            aria-expanded="false" aria-controls="navMenu"><span></span></button>
+
+    <nav class="nav__menu" id="navMenu" aria-label="Pagrindinė navigacija">
+      <a class="nav__link" href="apie-mane.html">Apie mane</a>
+      <a class="nav__link" href="kuo-galiu-padeti.html">Kuo galiu padėti</a>
+      <a class="nav__link js-listings" href="https://www.ober-haus.lt/darbuotoju-kontaktai/aurimas-petrikas/?objektai"
+         target="_blank" rel="noopener">Objektai</a>
+      <a class="btn btn--sm" href="susisiekti.html" aria-current="page">Susisiekti</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page" id="turinys">
+
+<!-- ======================= KONTAKTAI ======================= -->
+<section class="section page-head" id="kontaktai">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-head__title">
+        <p class="eyebrow">Kontaktai</p>
+        <h1 class="h-display">Susisiekime.</h1>
+      </div>
+      <p class="lede">
+        Turite klausimą dėl NT, svarstote parduoti, pirkti ar investuoti?
+        Parašykite – aptarsime. Nebūtina jau šiandien žinoti atsakymo.
+      </p>
+    </div>
+
+    <div class="contact__grid">
+      <form class="form" id="contactForm" novalidate>
+        <div class="form__row">
+          <div class="field">
+            <label for="c-name">Vardas *</label>
+            <input id="c-name" name="vardas" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="c-phone">Telefonas</label>
+            <input id="c-phone" name="telefonas" type="tel" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="form__row">
+          <div class="field">
+            <label for="c-email">El. paštas *</label>
+            <input id="c-email" name="elpastas" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="c-topic">Kuo galiu padėti?</label>
+            <select id="c-topic" name="tema">
+              <option>Parduoti</option>
+              <option>Pirkti</option>
+              <option>Investuoti</option>
+              <option>Komercinis NT</option>
+              <option>Sklypas</option>
+              <option>Kita</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="c-msg">Žinutė</label>
+          <textarea id="c-msg" name="zinute"
+                    placeholder="Trumpai aprašykite situaciją – objektą, terminus, ko tikitės."></textarea>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" id="c-consent" required>
+          <span>Sutinku, kad mano pateikti duomenys būtų naudojami atsakymui į šią
+          užklausą pateikti.</span>
+        </label>
+
+        <p class="form__status" id="formStatus" hidden role="status"></p>
+
+        <div class="btn-row">
+          <button class="btn" type="submit">Siųsti užklausą</button>
+        </div>
+      </form>
+
+      <aside class="contact__info">
+        <div class="contact__block">
+          <p class="contact__k">Kontaktinis asmuo</p>
+          <p class="contact__v">Aurimas Petrikas</p>
+          <p class="contact__small">Klaipėdos regiono vadovas, Ober-Haus Lietuva</p>
+        </div>
+        <div class="contact__block">
+          <p class="contact__k">Telefonas</p>
+          <p class="contact__v"><a id="cPhone" href="#">+370 687 88870</a></p>
+        </div>
+        <div class="contact__block">
+          <p class="contact__k">El. paštas</p>
+          <p class="contact__v"><a id="cEmail" href="#">aurimas.petrikas@ober-haus.lt</a></p>
+        </div>
+        <div class="contact__block">
+          <p class="contact__k">Biuras</p>
+          <p class="contact__v" style="font-size:15px;font-weight:400">S. Daukanto g. 3, 92123 Klaipėda</p>
+        </div>
+        <div class="contact__block">
+          <p class="contact__k">Aptarnaujamas regionas</p>
+          <p class="contact__small">Klaipėda · Palanga · Neringa · Klaipėdos r. · Vakarų Lietuva</p>
+        </div>
+        <div class="contact__block">
+          <p class="contact__k">Profesinis profilis</p>
+          <p class="contact__v" style="font-size:15px;font-weight:400">
+            <a id="cLinkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <span class="brand">
+          <span class="brand__name">Aurimas Petrikas</span>
+          <span class="brand__mark">NT</span>
+        </span>
+        <p class="footer__tag">Profesionalus požiūris į nekilnojamąjį turtą.</p>
+        <div class="footer__social" id="social"></div>
+      </div>
+
+      <div>
+        <p class="footer__h">Turinys</p>
+        <ul class="footer__nav">
+          <li><a href="apie-mane.html">Apie mane</a></li>
+          <li><a href="kuo-galiu-padeti.html">Kuo galiu padėti</a></li>
+          <li><a class="js-listings" href="https://www.ober-haus.lt/darbuotoju-kontaktai/aurimas-petrikas/?objektai"
+                 target="_blank" rel="noopener">Objektai</a></li>
+          <li><a href="susisiekti.html">Susisiekti</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__h">Kontaktai</p>
+        <ul class="footer__contact" id="footerContact"></ul>
+      </div>
+    </div>
+
+    <div class="legal">
+      <p class="footer__h" id="legalHead" hidden>Teisinė informacija</p>
+      <div class="legal__grid" id="legalGrid"></div>
+      <div class="legal__links" id="legalLinks"></div>
+
+      <p class="disclaimer">
+        Svetainėje pateikta informacija yra bendro pobūdžio ir nėra pasiūlymas
+        sudaryti sandorį, teisinė, mokestinė ar investavimo konsultacija.
+        Objektų duomenys, kainos ir prieinamumas gali keistis be atskiro
+        įspėjimo – tikslią informaciją teiraukitės tiesiogiai.
+      </p>
+
+      <div class="legal__bar">
+        <span>&copy; <span id="year">2026</span> Aurimas Petrikas. Visos teisės saugomos.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

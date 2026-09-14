@@ -28,6 +28,9 @@
   --accent:     #8A6636;
   --accent-ink: #C6A56F;
 
+  /* Smėlio juosta (skaičiai pagrindiniame puslapyje) */
+  --sand:       #DBC5A0;
+
   /* Matmenys */
   --wrap:       1280px;
   --gutter:     clamp(20px, 5vw, 64px);
@@ -305,8 +308,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .nav__link:hover { color: var(--text); }
 .nav__link:hover::after,
-.nav__link.is-active::after { transform: scaleX(1); }
-.nav__link.is-active { color: var(--text); }
+.nav__link[aria-current='page']::after { transform: scaleX(1); }
+.nav__link[aria-current='page'] { color: var(--text); }
 
 .nav__toggle {
   display: none;
@@ -388,29 +391,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   align-items: end;
 }
 .hero__copy { padding-bottom: clamp(48px, 6vw, 88px); }
-.hero__eyebrow { margin-bottom: 26px; }
 .hero__title { margin-bottom: 26px; }
 .hero__title span { display: block; }
 .hero__title .accent-line { color: var(--text-mid); }
 .hero__lede { margin-bottom: 36px; }
-.hero__cta { margin-bottom: 40px; }
-
-.hero__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 34px;
-  padding-top: 26px;
-  border-top: 1px solid var(--line);
-  font-size: 13px;
-  color: var(--text-mute);
-}
-.hero__meta strong {
-  display: block;
-  color: var(--text);
-  font-weight: 500;
-  font-size: 14px;
-  margin-bottom: 2px;
-}
+.hero__cta { margin-bottom: 0; }
 
 /* Portretas ant tamsios plokštumos – iškirpta nuotrauka su permatomu fonu */
 .hero__figure {
@@ -1078,9 +1063,13 @@ ul { margin: 0; padding: 0; list-style: none; }
 .inv__media { position: relative; }
 .inv__media img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: auto;
+  aspect-ratio: 5 / 6;
   object-fit: cover;
-  filter: grayscale(.35) contrast(1.03);
+  object-position: center;
+}
+@media (max-width: 900px) {
+  .inv__media img { aspect-ratio: 4 / 3; }
 }
 .inv__tags {
   display: flex;
@@ -1426,3 +1415,74 @@ ul { margin: 0; padding: 0; list-style: none; }
    pašalina po jų likusius tarpus ir kabančias linijas. */
 .legal__grid:empty { margin-bottom: 0; }
 .legal__links:empty { display: none; }
+
+/* =============================================================================
+   26. DAUGIAPUSLAPINĖS STRUKTŪROS KOMPONENTAI
+   ========================================================================== */
+
+/* --- Vidinis puslapis: vieta po fiksuota navigacija ---------------------- */
+/* Pagrindinio puslapio hero pats turi padding-top, todėl .page jam nereikia. */
+.page { padding-top: var(--nav-h); }
+
+/* Pirmoji vidinio puslapio sekcija – šiek tiek mažesnis viršutinis tarpas */
+.page-head { padding-top: clamp(48px, 6vw, 84px); }
+
+/* --- Skaičių juosta (smėlio spalvos) ------------------------------------- */
+
+.band {
+  background: var(--sand);
+  color: var(--text);
+  padding-block: clamp(28px, 3.4vw, 40px);
+}
+.band__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 48px);
+}
+.band__v {
+  font-size: clamp(26px, 3.2vw, 40px);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  margin-bottom: 8px;
+}
+.band__l {
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(21, 22, 27, .70);
+}
+
+@media (max-width: 880px) {
+  .band__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 24px; }
+}
+@media (max-width: 460px) {
+  .band__grid { grid-template-columns: 1fr; gap: 22px; }
+  .band__item { display: flex; align-items: baseline; gap: 14px; }
+  .band__v { margin-bottom: 0; flex: none; }
+  .band__l { font-size: 12.5px; }
+}
+
+/* --- Citatos juosta (vidinio puslapio viršus) ---------------------------- */
+
+.quote-band { padding-block: clamp(48px, 6vw, 76px); }
+.quote-band .quote__mark { margin-bottom: 10px; }
+.quote-band .quote__wrap { align-items: end; }
+.quote--wide {
+  max-width: 30ch;
+  font-size: clamp(26px, 3.6vw, 42px);
+}
+
+/* --- Viso pločio nuotraukos juosta po navigacija ------------------------- */
+
+.page-banner { line-height: 0; }
+.page-banner img {
+  width: 100%;
+  /* height:auto būtina – kitaip HTML height atributas nustelbia aspect-ratio */
+  height: auto;
+  aspect-ratio: 1008 / 286;
+  object-fit: cover;
+  object-position: center;
+}
+@media (max-width: 900px) {
+  .page-banner img { aspect-ratio: 16 / 9; }
+}
