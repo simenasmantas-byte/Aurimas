@@ -1186,10 +1186,17 @@ ul { margin: 0; padding: 0; list-style: none; }
   font-size: 10px; font-weight: 600; letter-spacing: .13em;
   text-transform: uppercase; color: var(--text-mute); margin-bottom: 7px;
 }
-.contact__v { font-size: 17px; font-weight: 500; letter-spacing: -.015em; }
+/* Visos kontaktų reikšmės – vienodo dydžio, storio ir spalvos, be paryškinimo */
+.contact__v,
+.contact__small {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.55;
+  color: var(--text);
+}
 .contact__v a { text-decoration: none; border-bottom: 1px solid var(--line); transition: border-color .2s var(--ease); }
 .contact__v a:hover { border-color: var(--accent); color: var(--accent); }
-.contact__small { font-size: 14px; color: var(--text-mid); }
 
 /* --- 21. Footer ----------------------------------------------------------- */
 
@@ -1481,9 +1488,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   height: auto;
   aspect-ratio: 1008 / 286;
   object-fit: cover;
-  /* Kadras pastumtas aukštyn, kad tilptų stogo linija.
-     Mažesnė reikšmė = rodoma aukštesnė nuotraukos dalis. */
-  object-position: center 34%;
+  /* Kadro aukštis: mažesnė reikšmė = rodoma aukštesnė nuotraukos dalis,
+     didesnė = žemesnė. 62 % parenka fasadą ir pirmą aukštą, be stogo. */
+  object-position: center 62%;
 }
 @media (max-width: 900px) {
   .page-banner img { aspect-ratio: 16 / 9; }
