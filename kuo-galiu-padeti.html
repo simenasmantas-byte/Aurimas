@@ -50,17 +50,16 @@
 <main class="page" id="turinys">
 
 <!-- ======================= NUOTRAUKOS JUOSTA =======================
-     .avif – originalas (626 px pločio). Naujos naršyklės ima jį.
-     .jpg  – atsarginis variantas senesnėms naršyklėms (Safari < 16.4).
-     Turint didesnės raiškos originalą, užrašykite abu failus ant viršaus
-     tais pačiais pavadinimais – daugiau nieko keisti nereikia. -->
+     1536 × 1024 px. Kadravimą į juostą atlieka CSS (object-fit: cover),
+     todėl keičiant nuotrauką pakanka užrašyti failą ant viršaus tuo pačiu
+     pavadinimu. Kadro aukštį valdo .page-banner img { object-position }. -->
 <div class="page-banner">
-  <picture>
-    <source srcset="assets/img/kuo-galiu-padeti-hero.avif" type="image/avif">
-    <img src="assets/img/kuo-galiu-padeti-hero.jpg" width="2016" height="572"
-         fetchpriority="high" decoding="async"
-         alt="Šiuolaikinis gyvenamasis namas su stiklo fasadu vakarėjant">
-  </picture>
+  <img src="assets/img/kuo-galiu-padeti-hero.jpg"
+       srcset="assets/img/kuo-galiu-padeti-hero-800.jpg 800w,
+               assets/img/kuo-galiu-padeti-hero.jpg 1536w"
+       sizes="100vw" width="1536" height="1024"
+       fetchpriority="high" decoding="async"
+       alt="Šiuolaikinis gyvenamasis namas su stiklo fasadu vakarėjant">
 </div>
 
 <!-- ======================= KUO BŪSIU NAUDINGAS ======================= -->

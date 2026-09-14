@@ -75,20 +75,24 @@ Aktyvus meniu punktas žymimas atributu `aria-current="page"`.
 |---|---|
 | `aurimas-petrikas.png` | Pagrindinio puslapio portretas |
 | `klaipeda-uostas-biurai.jpg` | „NT sprendimai ne tik gyvenimui“ |
-| `kuo-galiu-padeti-hero.avif` + `.jpg` | „Kuo galiu padėti“ viršaus juosta |
+| `kuo-galiu-padeti-hero.jpg` (+ `-800.jpg`) | „Kuo galiu padėti“ viršaus juosta |
 
 **Portretas** – spalvota iškirpta nuotrauka permatomu fonu, todėl savaime
 derinasi prie svetainės fono. Atspalvis reguliuojamas viena CSS eilute –
 `.hero__portrait { filter: … }`.
 
-**„Kuo galiu padėti“ juosta** naudoja `<picture>`: naujos naršyklės ima
-`.avif` (originalą), senesnės – `.jpg` (atsarginį). Keičiant pakanka užrašyti
-abu failus ant viršaus tais pačiais pavadinimais.
+**„Kuo galiu padėti“ juosta** – 1536 × 1024 px (332 KB) plius sumažinta
+800 px versija telefonams (98 KB). Naršyklė per `srcset` pati pasirenka
+tinkamą. Kompiuteryje nuotrauka net sumažinama (0,88×), todėl ryški.
 
-> ⚠ Dabartinis `.avif` yra **626 × 626 px** – tai sumažinta peržiūros versija.
-> Juosta rodoma ~1345 px pločio, todėl vaizdas išdidinamas ~2,1 karto ir
-> dideliuose ekranuose atrodo minkštokai. Norint tikro ryškumo, reikia
-> pilnos raiškos originalo (bent ~1600 px pločio) iš to paties šaltinio.
+Kadravimą į juostą atlieka CSS. Kadro aukštis reguliuojamas viena eilute:
+
+```css
+.page-banner img { object-position: center 34%; }  /* mažiau % = aukščiau */
+```
+
+Keičiant nuotrauką pakanka užrašyti failus ant viršaus tais pačiais
+pavadinimais (abu dydžius).
 
 Keičiant nuotrauką svarbu, kad CSS turėtų `height: auto` – kitaip HTML
 `height` atributas nustelbia `aspect-ratio` ir nuotrauka išsitempia.

@@ -1481,7 +1481,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   height: auto;
   aspect-ratio: 1008 / 286;
   object-fit: cover;
-  object-position: center;
+  /* Kadras pastumtas aukštyn, kad tilptų stogo linija.
+     Mažesnė reikšmė = rodoma aukštesnė nuotraukos dalis. */
+  object-position: center 34%;
 }
 @media (max-width: 900px) {
   .page-banner img { aspect-ratio: 16 / 9; }
