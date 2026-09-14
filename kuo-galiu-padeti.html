@@ -50,13 +50,17 @@
 <main class="page" id="turinys">
 
 <!-- ======================= NUOTRAUKOS JUOSTA =======================
-     LAIKINA NUOTRAUKA: iškirpta iš dizaino maketo, todėl ne itin ryški.
-     Pakeiskite kokybišku originalu tuo pačiu pavadinimu:
-     assets/img/kuo-galiu-padeti-hero.jpg -->
+     .avif – originalas (626 px pločio). Naujos naršyklės ima jį.
+     .jpg  – atsarginis variantas senesnėms naršyklėms (Safari < 16.4).
+     Turint didesnės raiškos originalą, užrašykite abu failus ant viršaus
+     tais pačiais pavadinimais – daugiau nieko keisti nereikia. -->
 <div class="page-banner">
-  <img src="assets/img/kuo-galiu-padeti-hero.jpg" width="2016" height="572"
-       fetchpriority="high" decoding="async"
-       alt="Šiuolaikinis gyvenamasis namas su stiklo fasadu vakarėjant">
+  <picture>
+    <source srcset="assets/img/kuo-galiu-padeti-hero.avif" type="image/avif">
+    <img src="assets/img/kuo-galiu-padeti-hero.jpg" width="2016" height="572"
+         fetchpriority="high" decoding="async"
+         alt="Šiuolaikinis gyvenamasis namas su stiklo fasadu vakarėjant">
+  </picture>
 </div>
 
 <!-- ======================= KUO BŪSIU NAUDINGAS ======================= -->

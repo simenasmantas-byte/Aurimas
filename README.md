@@ -75,14 +75,20 @@ Aktyvus meniu punktas žymimas atributu `aria-current="page"`.
 |---|---|
 | `aurimas-petrikas.png` | Pagrindinio puslapio portretas |
 | `klaipeda-uostas-biurai.jpg` | „NT sprendimai ne tik gyvenimui“ |
-| `kuo-galiu-padeti-hero.jpg` | „Kuo galiu padėti“ viršaus juosta |
+| `kuo-galiu-padeti-hero.avif` + `.jpg` | „Kuo galiu padėti“ viršaus juosta |
 
 **Portretas** – spalvota iškirpta nuotrauka permatomu fonu, todėl savaime
 derinasi prie svetainės fono. Atspalvis reguliuojamas viena CSS eilute –
 `.hero__portrait { filter: … }`.
 
-> ⚠ `kuo-galiu-padeti-hero.jpg` yra **laikina** – iškirpta iš dizaino maketo,
-> todėl ne itin ryški. Pakeiskite kokybišku originalu tuo pačiu pavadinimu.
+**„Kuo galiu padėti“ juosta** naudoja `<picture>`: naujos naršyklės ima
+`.avif` (originalą), senesnės – `.jpg` (atsarginį). Keičiant pakanka užrašyti
+abu failus ant viršaus tais pačiais pavadinimais.
+
+> ⚠ Dabartinis `.avif` yra **626 × 626 px** – tai sumažinta peržiūros versija.
+> Juosta rodoma ~1345 px pločio, todėl vaizdas išdidinamas ~2,1 karto ir
+> dideliuose ekranuose atrodo minkštokai. Norint tikro ryškumo, reikia
+> pilnos raiškos originalo (bent ~1600 px pločio) iš to paties šaltinio.
 
 Keičiant nuotrauką svarbu, kad CSS turėtų `height: auto` – kitaip HTML
 `height` atributas nustelbia `aspect-ratio` ir nuotrauka išsitempia.
