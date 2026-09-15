@@ -74,6 +74,9 @@ a { color: inherit; }
 h1, h2, h3, h4 { margin: 0; font-weight: 600; letter-spacing: -.02em; line-height: 1.12; }
 p { margin: 0; }
 ul { margin: 0; padding: 0; list-style: none; }
+/* Naršyklės <figure> numatytai turi margin: 1em 40px – dėl to po nuotraukomis
+   atsirasdavo 16 px tarpas, o iš šonų jos būdavo suspaustos. */
+figure { margin: 0; }
 
 :focus-visible {
   outline: 2px solid var(--accent);
