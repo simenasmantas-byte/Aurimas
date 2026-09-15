@@ -61,7 +61,19 @@ kol `privacyUrl` ir kiti adresai tušti, nuorodos nerodomos.
 > Svetainėje nėra nė vieno išgalvoto registro numerio ar licencijos.
 > Nepridėkite jų, kol neturite patvirtintų duomenų.
 
-### 3. Navigacija ir footeris
+### 3. Mobili kontaktų juosta
+
+Telefone ir planšetėje (iki 900 px) apačioje kabo juosta su trimis mygtukais:
+skambinti, rašyti el. laišką ir „Nemokama konsultacija“. Matoma visuose
+puslapiuose, slenkant neišnyksta, atidarius meniu pasislepia.
+
+Telefono ir el. pašto adresai imami iš `SITE` (`data.js`), tad keisti
+reikia tik ten. Mygtuko tekstą ir nuorodą rasite kiekvieno puslapio
+apačioje, prieš `<script>` eilutes (`.mobile-bar__cta`).
+
+Kompiuteryje juosta nerodoma.
+
+### 4. Navigacija ir footeris
 
 Kartojasi visuose keturiuose HTML failuose (taip svetainė veikia be jokio
 build'o ir be JavaScript). Keičiant meniu punktą, pakeiskite jį **visuose
@@ -69,17 +81,22 @@ keturiuose failuose**.
 
 Aktyvus meniu punktas žymimas atributu `aria-current="page"`.
 
-### 4. Nuotraukos
+### 5. Nuotraukos
 
 | Failas | Kur naudojama |
 |---|---|
-| `aurimas-petrikas.png` | Pagrindinio puslapio portretas |
+| `aurimas-petrikas.png` (+ `-660.png`) | Pagrindinio puslapio portretas |
 | `klaipeda-uostas-biurai.jpg` | „NT sprendimai ne tik gyvenimui“ |
 | `kuo-galiu-padeti-hero.jpg` (+ `-800.jpg`) | „Kuo galiu padėti“ viršaus juosta |
 
-**Portretas** – spalvota iškirpta nuotrauka permatomu fonu, todėl savaime
-derinasi prie svetainės fono. Atspalvis reguliuojamas viena CSS eilute –
-`.hero__portrait { filter: … }`.
+**Portretas** – 890 × 1024 px PNG su permatomu fonu (plius 660 px versija
+telefonams per `srcset`). Kadangi fonas permatomas, portretas savaime
+derinasi prie svetainės fono spalvos. Atspalvis reguliuojamas viena CSS
+eilute – `.hero__portrait { filter: … }`.
+
+> Keičiant portretą svarbu, kad PNG turėtų **permatomą foną** ir kad objektas
+> siektų apatinį nuotraukos kraštą – hero sekcijoje jis remiasi į smėlio
+> juostą. Tuščios eilutės apačioje sukurtų tarpą.
 
 **„Kuo galiu padėti“ juosta** – 1536 × 1024 px (332 KB) plius sumažinta
 800 px versija telefonams (98 KB). Naršyklė per `srcset` pati pasirenka
@@ -88,7 +105,7 @@ tinkamą. Kompiuteryje nuotrauka net sumažinama (0,88×), todėl ryški.
 Kadravimą į juostą atlieka CSS. Kadro aukštis reguliuojamas viena eilute:
 
 ```css
-.page-banner img { object-position: center 34%; }  /* mažiau % = aukščiau */
+.page-banner img { object-position: center 62%; }  /* mažiau % = aukščiau */
 ```
 
 Keičiant nuotrauką pakanka užrašyti failus ant viršaus tais pačiais
@@ -97,7 +114,7 @@ pavadinimais (abu dydžius).
 Keičiant nuotrauką svarbu, kad CSS turėtų `height: auto` – kitaip HTML
 `height` atributas nustelbia `aspect-ratio` ir nuotrauka išsitempia.
 
-### 5. Logotipas
+### 6. Logotipas
 
 Logotipo failo nebuvo, todėl naudojamas **tipografinis žodinis ženklas**
 (`AURIMAS PETRIKAS │ NT`). Gavus tikrą logotipą, visuose keturiuose failuose

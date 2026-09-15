@@ -79,6 +79,10 @@
       $$('.js-listings').forEach(function (a) { a.href = listingsUrl; });
     }
 
+    /* Mobilios kontaktų juostos mygtukai – taip pat iš data.js */
+    $$('.js-tel').forEach(function (a) { a.href = tel; });
+    $$('.js-mail').forEach(function (a) { a.href = mail; });
+
     var y = $('#year');
     if (y) y.textContent = new Date().getFullYear();
 

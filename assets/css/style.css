@@ -1498,3 +1498,72 @@ figure { margin: 0; }
 @media (max-width: 900px) {
   .page-banner img { aspect-ratio: 16 / 9; }
 }
+
+/* =============================================================================
+   27. MOBILI KONTAKTŲ JUOSTA
+   -----------------------------------------------------------------------------
+   Matoma tik telefone ir planšetėje, visuose puslapiuose, slenkant neišnyksta.
+   ========================================================================== */
+
+.mobile-bar {
+  display: none;
+  position: fixed;
+  z-index: 90;
+  left: 0;
+  right: 0;
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-inline: 14px;
+  /* Leidžia paspausti turinį tarpuose tarp mygtukų */
+  pointer-events: none;
+}
+.mobile-bar > * { pointer-events: auto; }
+
+@media (max-width: 900px) {
+  .mobile-bar { display: flex; }
+  /* Vietos, kad juosta neuždengtų footerio pabaigos */
+  body { padding-bottom: 88px; }
+}
+
+/* Atidarius meniu juosta netrukdo */
+body:has(.nav.is-open) .mobile-bar { display: none; }
+
+.mobile-bar__icon,
+.mobile-bar__cta {
+  height: 52px;
+  background: var(--ink);
+  color: var(--on-ink);
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(18, 22, 27, .26);
+  transition: background .2s var(--ease);
+}
+.mobile-bar__icon:active,
+.mobile-bar__cta:active { background: var(--accent); }
+
+.mobile-bar__icon {
+  width: 52px;
+  flex: none;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.mobile-bar__cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+@media (max-width: 400px) {
+  .mobile-bar { gap: 8px; }
+  .mobile-bar__cta { padding: 0 16px; font-size: 10.5px; letter-spacing: .07em; }
+}
