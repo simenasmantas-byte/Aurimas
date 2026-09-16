@@ -88,6 +88,18 @@ Aktyvus meniu punktas žymimas atributu `aria-current="page"`.
 | `aurimas-petrikas.png` (+ `-660.png`) | Pagrindinio puslapio portretas |
 | `klaipeda-uostas-biurai.jpg` | „NT sprendimai ne tik gyvenimui“ |
 | `kuo-galiu-padeti-hero.jpg` (+ `-800.jpg`) | „Kuo galiu padėti“ viršaus juosta |
+| `og-image.jpg` | Dalijimosi nuotrauka (Messenger, LinkedIn, Facebook) |
+
+**Dalijimosi nuotrauka** (`og-image.jpg`, 1200 × 628 px) rodoma, kai svetainės
+nuoroda siunčiama per žinutes ar socialinius tinklus. Ji nurodyta visuose
+keturiuose puslapiuose kaip `og:image` ir `twitter:image`.
+
+> Pakeitus nuotrauką kitokio dydžio, reikia pataisyti ir `og:image:width` bei
+> `og:image:height` reikšmes – jos turi sutapti su tikrais matmenimis.
+>
+> Socialiniai tinklai nuotrauką kešuoja. Po pakeitimo seną vaizdą galima
+> priverstinai atnaujinti per Facebook Sharing Debugger arba LinkedIn Post
+> Inspector.
 
 **Portretas** – 890 × 1024 px PNG su permatomu fonu (plius 660 px versija
 telefonams per `srcset`). Kadangi fonas permatomas, portretas savaime
