@@ -1575,3 +1575,37 @@ body:has(.nav.is-open) .mobile-bar { display: none; }
   .mobile-bar { gap: 8px; }
   .mobile-bar__cta { padding: 0 16px; font-size: 10.5px; letter-spacing: .07em; }
 }
+
+/* --- Footerio skiriamosios linijos per visą ekrano plotį ----------------
+   Turinį riboja .wrap (iki 1280 px), todėl paprastas border nusitęstų tik
+   per turinio plotį. Linija piešiama atskiru pseudoelementu, kuris
+   išsitempia per visą lango plotį – kaip ir .footer viršutinė linija.
+
+   100vw įskaičiuoja ir slinkties juostą, todėl linija būtų kelias dešimtis
+   pikselių platesnė nei matomas plotas. Apkerpame ties footerio kraštais –
+   overflow-x: clip (skirtingai nei hidden) nekuria slinkimo konteinerio. */
+
+.footer { overflow-x: clip; }
+
+.footer__top,
+.legal__links,
+.legal__bar {
+  position: relative;
+  border: 0;
+}
+
+.footer__top::after,
+.legal__links::before,
+.legal__bar::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  height: 1px;
+  background: var(--ink-line);
+}
+
+.footer__top::after   { bottom: 0; }
+.legal__links::before { top: 0; }
+.legal__bar::before   { top: 0; }
