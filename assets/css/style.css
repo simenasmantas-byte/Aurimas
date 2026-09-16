@@ -420,7 +420,7 @@ figure { margin: 0; }
 .hero__portrait {
   position: relative;
   width: 100%;
-  max-width: 440px;
+  max-width: 480px;
   height: auto;
   object-fit: contain;
   object-position: bottom center;
@@ -434,7 +434,7 @@ figure { margin: 0; }
   .hero__copy { padding-bottom: 44px; }
   .hero__figure { min-height: 0; }
   .hero__figure::before { inset: 18% 0 0 0; }
-  .hero__portrait { max-width: 330px; }
+  .hero__portrait { max-width: 360px; }
 }
 
 /* --- 8. Bendra sekcijų antraštė ------------------------------------------- */
@@ -1203,7 +1203,15 @@ figure { margin: 0; }
 
 /* --- 21. Footer ----------------------------------------------------------- */
 
-.footer { background: var(--ink); color: var(--on-ink); padding-block: clamp(52px, 6vw, 80px) 32px; }
+.footer {
+  background: var(--ink);
+  color: var(--on-ink);
+  padding-block: clamp(52px, 6vw, 80px) 32px;
+  /* Atskiria footerį nuo viršuje esančios sekcijos. Svarbu pagrindiniame
+     puslapyje, kur virš jo eina tokios pat tamsios spalvos sekcija –
+     be linijos jie susilieja į vieną plotą. */
+  border-top: 1px solid var(--ink-line);
+}
 .footer__top {
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);

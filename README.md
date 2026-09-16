@@ -85,7 +85,7 @@ Aktyvus meniu punktas žymimas atributu `aria-current="page"`.
 
 | Failas | Kur naudojama |
 |---|---|
-| `aurimas-petrikas.png` (+ `-660.png`) | Pagrindinio puslapio portretas |
+| `aurimas-petrikas.png` (+ `-720.png`) | Pagrindinio puslapio portretas |
 | `klaipeda-uostas-biurai.jpg` | „NT sprendimai ne tik gyvenimui“ |
 | `kuo-galiu-padeti-hero.jpg` (+ `-800.jpg`) | „Kuo galiu padėti“ viršaus juosta |
 | `og-image.jpg` | Dalijimosi nuotrauka (Messenger, LinkedIn, Facebook) |
@@ -101,7 +101,7 @@ keturiuose puslapiuose kaip `og:image` ir `twitter:image`.
 > priverstinai atnaujinti per Facebook Sharing Debugger arba LinkedIn Post
 > Inspector.
 
-**Portretas** – 890 × 1024 px PNG su permatomu fonu (plius 660 px versija
+**Portretas** – 970 × 1024 px PNG su permatomu fonu (plius 720 px versija
 telefonams per `srcset`). Kadangi fonas permatomas, portretas savaime
 derinasi prie svetainės fono spalvos. Atspalvis reguliuojamas viena CSS
 eilute – `.hero__portrait { filter: … }`.
